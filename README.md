@@ -92,6 +92,30 @@
    前面的文字{\CJKfontspec{Noto Serif CJK SC} 旸}后面的文字
    ```
 
+## UCAS 资环对齐与 Word 导出（项目级）
+
+当前仓库新增了面向资环规范的项目级 Word 对齐链路，可用于“结构与版式”验收参考：
+
+```bash
+xelatex -interaction=nonstopmode Thesis.tex
+biber Thesis
+xelatex -interaction=nonstopmode Thesis.tex
+xelatex -interaction=nonstopmode Thesis.tex
+xelatex -interaction=nonstopmode spine.tex
+python3 scripts/export_docx.py --project-dir . --tex-file Thesis.tex
+```
+
+相关基线资料与验收口径：
+
+- 官方参考资料：`docs/official/`
+- 对照矩阵：`docs/ucas_resource_env_alignment_matrix.md`
+
+说明：
+
+- 当前 DOCX 导出能力为项目级对齐能力，仅供资环模板结构与版式参考。
+- 该链路尚不完善，不构成通用“自动终稿”支持。
+- 图表/算法/代码环境/交叉引用等复杂对象仍需人工复核与整理，后续持续优化。
+
 ## 文档类选项
 
 **ucasDissertation**文档类提供了几个选项, 可根据需要设置 (取消注释为开启, 注释掉为关闭):
@@ -104,4 +128,3 @@
 ## 更多$\LaTeX$帮助
 
 我写了一篇[LaTeX使用笔记](https://leojhonsong.github.io/zh-CN/2021/04/24/LaTeX杂记/), 有兴趣可以看看. 如果仍遇到问题, 欢迎在本仓库提issue.
-
